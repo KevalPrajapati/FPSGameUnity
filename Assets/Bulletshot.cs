@@ -16,23 +16,23 @@ public class Bulletshot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             letPlay = !letPlay;
         }
 
-        if (letPlay)
+        if (Input.GetButtonDown("Fire1"))
         {
-            if (!gameObject.particleSystem.isPlaying)
+            if (!gameObject.GetComponent<ParticleSystem>().isPlaying)
             {
-                gameObject.particleSystem.Play();
+                gameObject.GetComponent<ParticleSystem>().Play();
             }
         }
         else
         {
-            if (gameObject.particleSystem.isPlaying)
+            if (gameObject.GetComponent<ParticleSystem>().isPlaying)
             {
-                gameObject.particleSystem.Stop();
+                gameObject.GetComponent<ParticleSystem>().Stop();
             }
         }
 
