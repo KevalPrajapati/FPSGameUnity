@@ -4,22 +4,36 @@ using UnityEngine;
 
 public class Bulletshot : MonoBehaviour
 {
-    public float moveSpeed;
-    private Vector3 input;
-    private Rigidbody r;
+    protected bool letPlay = true;
+
+
     // Start is called before the first frame update
     void Start()
-    {
-        r = GetComponent<Rigidbody>();
-
+    { 
+    
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetButton("Jump`")) {
-            input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            r.AddForce(input * Time.deltaTime * moveSpeed/100000);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            letPlay = !letPlay;
+        }
+
+        if (letPlay)
+        {
+            if (!gameObject.particleSystem.isPlaying)
+            {
+                gameObject.particleSystem.Play();
+            }
+        }
+        else
+        {
+            if (gameObject.particleSystem.isPlaying)
+            {
+                gameObject.particleSystem.Stop();
+            }
         }
 
 
